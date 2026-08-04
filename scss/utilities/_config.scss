@@ -2,20 +2,46 @@
 // Global Config
 // ==========================================================================
 
-// Fonts
+// FONTS
+// Font Families
+$font-family--import        : "https://fonts.googleapis.com/css2?family=Turret+Road:wght@200;300;400;500;700;800&display=swap";
+$font-family--primary       : "Turret Road", sans-serif;
+$font-family--secondary     : sans-serif;
 
+// Font Weights
+$font-weight--thin       : 100;
+$font-weight--light      : 300;
+$font-weight--medium     : 400;
+$font-weight--bold       : 600;
+$font-weight--ultra-bold : 900;
 
-// Colours
+// Text
+$base__font-size    : 16px;
+$font-size--title   : 64px; 
+$font-size--prim    : 36px;
+$font-size--secn    : 23px;
+$font-size--thrd    : 16px;
+$font-size--small   : 13px;
+$base__line         : 24px;
+$letter-space       : 1px;
+
+// ==========================================================================
+
+// COLOURS
 // Base Colours
 $white : #fdfdfd;
 $black : #0b0b0b;
-$grey  : #94a3b8;
+$grey  : #828994;
 
 // Unique Colours
+// $colour				: #000000;
 
 
 // Colour Specifications
-
+$colour-primary				: blue;
+$colour-secondary			: blue;
+$colour-font				: grey;
+$colour-border				: blue;
 
 // Color Palette Modifiers
 $color-palettes: (
@@ -34,6 +60,7 @@ $color-palettes: (
 	)
 );
 
+// ==========================================================================
 
 // Breakpoints
 $brkpoint-xs    : 1px;
