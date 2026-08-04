@@ -1,0 +1,43 @@
+// ==========================================================================
+// Global Config
+// ==========================================================================
+
+// Fonts
+
+
+// Colours
+// Base Colours
+$white : #fdfdfd;
+$black : #0b0b0b;
+$grey  : #94a3b8;
+
+// Unique Colours
+
+
+// Colour Specifications
+
+
+// Color Palette Modifiers
+$color-palettes: (
+	grey: (
+		xx-light : lighten($grey, 43%),
+		x-light  : lighten($grey, 35%),
+	  light    : lighten($grey, 12%),
+	  base     : $grey,
+	 	dark     : darken($grey, 8%),
+	 	x-dark   : darken($grey, 16%)
+	),
+	black: (
+		light    : lighten($black, 10%),
+		base     : $black,
+		dark     : darken($black, 10%)
+	)
+);
+
+
+// Breakpoints
+$brkpoint-xs    : 1px;
+$brkpoint-mob   : 300px;
+$brkpoint-sm    : 768px;
+$brkpoint-md    : 992px;
+$brkpoint-lg    : 1260px;

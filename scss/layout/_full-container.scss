@@ -1,0 +1,13 @@
+// ==========================================================================
+// full Container
+// ==========================================================================
+
+#container {
+    display: grid;
+    transition: transform 0.3s ease-in-out; // Smooth shifting animation
+    overflow-x: clip;
+    width: 100%;
+    position: relative;
+    z-index: 2; 
+    background-color: $white; // Prevents transparency issues
+}
