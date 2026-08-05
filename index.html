@@ -9,17 +9,22 @@
     </head>
     <body>
         <div id="container">
-            <h1>Sup</h1>
-            <p>This is a test</p>
-            <div id="random-image-container">
-
-            </div>
-            <form>
-                <!-- Email & submit -->
+            
+            <h2></h2>
+            
+            <div id="image-container"></div>
+            <form id="emailForm" novalidate>
+                <label for="user-email">Email Address:</label>
+                <input 
+                    type="email" 
+                    id="user-email" 
+                    name="email" 
+                    placeholder="name@example.com" 
+                    required
+                >
+                <button type="submit">Submit</button>
             </form>
-            <div>
-                
-            </div>
+            <div id="email-image-storage"></div>
         <!-- load image from https://picsum.photos
         tied to an email
         submition form (with email validation)
