@@ -17,7 +17,7 @@ $font-weight--ultra-bold : 900;
 
 // Text
 $base__font-size    : 16px;
-$font-size--title   : 64px; 
+$font-size--title   : 48px; 
 $font-size--prim    : 36px;
 $font-size--secn    : 23px;
 $font-size--thrd    : 16px;
@@ -35,13 +35,17 @@ $grey  : #828994;
 
 // Unique Colours
 // $colour				: #000000;
-
+$drained-tomatoe		: #9e6669;
+$midnight-oil			: #1c1d2b;
+$charcoal-grey			: #2f2e30;
+$ooze-tar				: #3b2836;
 
 // Colour Specifications
-$colour-primary				: blue;
-$colour-secondary			: blue;
-$colour-font				: grey;
-$colour-border				: blue;
+$colour-primary				: $drained-tomatoe;
+$colour-secondary			: $ooze-tar;
+$colour-font				: $midnight-oil;
+$colour-border				: $charcoal-grey;
+$colour-shadow				: rgba($black, .2);
 
 // Color Palette Modifiers
 $color-palettes: (
