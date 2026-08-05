@@ -70,21 +70,25 @@ function renderEntryToDOM(email, imageDataUrl) {
     const storageContainer = document.getElementById('email-image-storage');
     if (!storageContainer) return;
 
+    // Normalise email to lowercase for data matching
+    const normalisedEmail = email.toLowerCase();
+
     // Check if an entry container for this email already exists in the DOM
-    let card = document.querySelector(`.stored-entry[data-email="${CSS.escape(email)}"]`);
+    let card = document.querySelector(`.stored-entry[data-email="${CSS.escape(normalisedEmail)}"]`);
 
     if (!card) {
-        // If it doesn't exist, create a new card container
-        card = document.createElement('div');
-        card.className = 'stored-entry';
-        card.setAttribute('data-email', email); 
+    // If it doesn't exist, create a new card container
+    card = document.createElement('div');
+    card.className = 'stored-entry';
+    card.setAttribute('data-email', normalisedEmail); 
 
-        const emailHeader = document.createElement('h3');
-        emailHeader.textContent = email;
-        card.appendChild(emailHeader);
-        
-        storageContainer.appendChild(card);
-    }
+    // Capitalise only the very first letter of the email header text
+    const emailHeader = document.createElement('h3');
+    emailHeader.textContent = normalisedEmail.charAt(0).toUpperCase() + normalisedEmail.slice(1);
+    card.appendChild(emailHeader);
+    
+    storageContainer.appendChild(card);
+}
 
     // Creates a new dedicated wrapper for each image
     const imageContainer = document.createElement('div');
@@ -93,7 +97,7 @@ function renderEntryToDOM(email, imageDataUrl) {
     // Create the image asset
     const imgCopy = document.createElement('img');
     imgCopy.src = imageDataUrl;
-    imgCopy.alt = `Saved image for ${email}`;
+    imgCopy.alt = `Saved image for ${normalisedEmail}`;
     
     // Nest the image inside the wrapper, then add the wrapper to the card
     imageContainer.appendChild(imgCopy);
@@ -125,10 +129,16 @@ function saveEntryToStorage(email, imageDataUrl) {
     const savedData = localStorage.getItem('userSubmissions');
     const entries = savedData ? JSON.parse(savedData) : [];
     
+    // Normalise email to lowercase to check storage case-insensitively
+    const normalisedEmail = email.toLowerCase();
+    
     // Find if the email already exists in storage
-    const existingEntry = entries.find(entry => entry.email === email);
+    const existingEntry = entries.find(entry => entry.email.toLowerCase() === normalisedEmail);
 
     if (existingEntry) {
+        // Enforce lowercase uniformity in storage for existing entries
+        existingEntry.email = normalisedEmail;
+
         // If it's an old entry, initialize the images array and clean up old property
         if (!existingEntry.images) {
             existingEntry.images = [];
@@ -140,8 +150,8 @@ function saveEntryToStorage(email, imageDataUrl) {
         // If it exists, push the new image to its array
         existingEntry.images.push(imageDataUrl);
     } else {
-        // If it's a new email, create an entry with an array containing the image
-        entries.push({ email, images: [imageDataUrl] });
+        // If it's a new email, create an entry with a lowercase email
+        entries.push({ email: normalisedEmail, images: [imageDataUrl] });
     }
     
     localStorage.setItem('userSubmissions', JSON.stringify(entries));
