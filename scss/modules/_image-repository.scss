@@ -2,3 +2,32 @@
 // Image Repository
 // ==========================================================================
 
+#email-image-storage {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    .stored-entry {
+        display: flex;
+        flex-wrap: wrap; /* Allows image-containers to flow into row(s) below */
+        gap: 10px; /* Space between the image containers */
+        padding: 0 20px;
+
+        // Forces the email text to take up 100% width, pushing images to the next row
+        > h3:first-child {
+            width: 100%;
+            margin-bottom: 0.5rem;
+        }
+
+        // Individual image container blocks
+        .image-container {
+            display: inline-flex;
+            img{
+                transition: transform 0.3s ease; // Smooths the movement
+                &:hover {
+                    transform: translateY(-8px); // Moves image up by 8px
+                }
+            }
+        }
+    }
+}

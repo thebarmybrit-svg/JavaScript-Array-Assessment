@@ -2,17 +2,14 @@
 // Random Image Holder
 // ==========================================================================
 
- #image-container {
+ #random-image-container {
     margin: 20px 0;
+    padding: 0 20px;
+    width: 100vw;
     min-height: 400px;
     display: flex;
     align-items: center;
     justify-content: center;
     background: #eef0f3;
     border-radius: 4px;
-}
-img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
 }

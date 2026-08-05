@@ -9,7 +9,7 @@ let currentImageDataUrl = '';
 
 // HTML insertion function
 function generateImage(imageUrl) {
-    const container = document.getElementById('image-container');
+    const container = document.getElementById('random-image-container');
     if (!container) return; // Guard clause if HTML is missing
     
     container.innerHTML = ''; 
@@ -65,24 +65,39 @@ function loadRandomImage() {
         });
 }
 
-// Helper to append a single entry card to the DOM
+// Helper to append a single entry card or add an image to an existing card in the DOM
 function renderEntryToDOM(email, imageDataUrl) {
     const storageContainer = document.getElementById('email-image-storage');
     if (!storageContainer) return;
 
-    const card = document.createElement('div');
-    card.className = 'stored-entry';
+    // Check if an entry container for this email already exists in the DOM
+    let card = document.querySelector(`.stored-entry[data-email="${CSS.escape(email)}"]`);
 
-    const emailHeader = document.createElement('h3');
-    emailHeader.textContent = email;
+    if (!card) {
+        // If it doesn't exist, create a new card container
+        card = document.createElement('div');
+        card.className = 'stored-entry';
+        card.setAttribute('data-email', email); 
 
+        const emailHeader = document.createElement('h3');
+        emailHeader.textContent = email;
+        card.appendChild(emailHeader);
+        
+        storageContainer.appendChild(card);
+    }
+
+    // Creates a new dedicated wrapper for each image
+    const imageContainer = document.createElement('div');
+    imageContainer.className = 'image-container';
+
+    // Create the image asset
     const imgCopy = document.createElement('img');
     imgCopy.src = imageDataUrl;
     imgCopy.alt = `Saved image for ${email}`;
-
-    card.appendChild(emailHeader);
-    card.appendChild(imgCopy);
-    storageContainer.appendChild(card);
+    
+    // Nest the image inside the wrapper, then add the wrapper to the card
+    imageContainer.appendChild(imgCopy);
+    card.appendChild(imageContainer);
 }
 
 // Load existing entries from localStorage on page startup
@@ -91,17 +106,44 @@ function loadSavedEntries() {
     if (savedData) {
         const entries = JSON.parse(savedData);
         entries.forEach(entry => {
-            renderEntryToDOM(entry.email, entry.imageDataUrl);
+            // Check if it's the new array format
+            if (entry.images && Array.isArray(entry.images)) {
+                entry.images.forEach(imgUrl => {
+                    renderEntryToDOM(entry.email, imgUrl);
+                });
+            } 
+            // Fallback: If it's an old single-image entry, handle it gracefully
+            else if (entry.imageDataUrl) {
+                renderEntryToDOM(entry.email, entry.imageDataUrl);
+            }
         });
     }
 }
 
-// Save a new entry to the array in localStorage
+// Save a new entry or update an existing email with a new image in localStorage
 function saveEntryToStorage(email, imageDataUrl) {
     const savedData = localStorage.getItem('userSubmissions');
     const entries = savedData ? JSON.parse(savedData) : [];
     
-    entries.push({ email, imageDataUrl });
+    // Find if the email already exists in storage
+    const existingEntry = entries.find(entry => entry.email === email);
+
+    if (existingEntry) {
+        // If it's an old entry, initialize the images array and clean up old property
+        if (!existingEntry.images) {
+            existingEntry.images = [];
+            if (existingEntry.imageDataUrl) {
+                existingEntry.images.push(existingEntry.imageDataUrl);
+                delete existingEntry.imageDataUrl; // Optional: clean up the old legacy key
+            }
+        }
+        // If it exists, push the new image to its array
+        existingEntry.images.push(imageDataUrl);
+    } else {
+        // If it's a new email, create an entry with an array containing the image
+        entries.push({ email, images: [imageDataUrl] });
+    }
+    
     localStorage.setItem('userSubmissions', JSON.stringify(entries));
 }
 
