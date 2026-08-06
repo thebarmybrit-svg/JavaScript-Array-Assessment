@@ -51,7 +51,7 @@ function loadRandomImage() {
     const minId = 0;
     const maxId = 1084;
     const randomId = Math.floor(Math.random() * (maxId - minId + 1)) + minId;
-    const targetUrl = `https://picsum.photos/id/${randomId}/400/300`;
+    const targetUrl = `https://picsum.photos/id/${randomId}/750/500`;
 
     fetchData(targetUrl)
         .then(imageBlob => {

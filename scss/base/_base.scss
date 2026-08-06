@@ -4,6 +4,8 @@
 
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
@@ -23,6 +25,7 @@ h1{
 
 h2{
     font-size: $font-size--prim;
+    margin-bottom: auto;
 }
 
 h3{
@@ -33,7 +36,7 @@ img {
     display: block;
     border: 3px solid $colour-border;
     
-    border-radius: 8px;
+    border-radius: $border-curved;
     max-width: 100%;
     height: auto;
 }

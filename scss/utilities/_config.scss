@@ -16,7 +16,7 @@ $font-weight--bold       : 600;
 $font-weight--ultra-bold : 900;
 
 // Text
-$base__font-size    : 16px;
+$base__font-size    : 18px;
 $font-size--title   : 48px; 
 $font-size--prim    : 36px;
 $font-size--secn    : 23px;
@@ -63,6 +63,14 @@ $color-palettes: (
 		dark     : darken($black, 10%)
 	)
 );
+
+// ==========================================================================
+
+// VISUAL FLAIR
+// Borders
+$border-curved			: 8px;
+$border-smooth			: 12px;
+$border-circle			: 50%;
 
 // ==========================================================================
 

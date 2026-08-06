@@ -13,7 +13,7 @@
         flex-wrap: wrap; /* Allows image-containers to flow into row(s) below */
         gap: 25px; /* Space between the image containers */
         padding: 0 20px;
-
+        justify-content: center;
         // Forces the email text to take up 100% width, pushing images to the next row
         > h3:first-child {
             width: 100%;
@@ -24,6 +24,8 @@
         .image-container {
             display: inline-flex;
             img{
+                width: 350px;
+                height: 250px;
                 box-shadow: 3px 3px 3px 5px $colour-shadow;
                 transition: transform 0.3s ease; // Smooths the movement
                 &:hover {
