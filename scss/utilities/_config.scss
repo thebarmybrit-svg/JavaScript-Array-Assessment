@@ -35,16 +35,18 @@ $grey  : #828994;
 
 // Unique Colours
 // $colour				: #000000;
-$drained-tomatoe		: #9e6669;
-$midnight-oil			: #1c1d2b;
+$dark-orchestra			: #391f1f;
+$pink-lace				: #ffdde1;
 $charcoal-grey			: #2f2e30;
-$ooze-tar				: #3b2836;
+$deep-crimson			: #180d0d;
+$dark-siena				: #291616;
 
 // Colour Specifications
-$colour-primary				: $drained-tomatoe;
-$colour-secondary			: $ooze-tar;
-$colour-font				: $midnight-oil;
-$colour-border				: $charcoal-grey;
+$colour-primary				: $dark-orchestra;
+$colour-secondary			: $dark-siena;
+$colour-tertiary			: $deep-crimson;
+$colour-font				: $pink-lace;
+$colour-border				: rgba($charcoal-grey, .5);
 $colour-shadow				: rgba($black, .2);
 
 // Color Palette Modifiers
@@ -67,10 +69,13 @@ $color-palettes: (
 // ==========================================================================
 
 // VISUAL FLAIR
-// Borders
-$border-curved			: 8px;
-$border-smooth			: 12px;
-$border-circle			: 50%;
+// Border Radius
+$border-rad-curved			: 8px;
+$border-rad-smooth			: 12px;
+$border-rad-circle			: 50%;
+
+// Border styles
+$border-standard		: 3px solid $colour-border;
 
 // ==========================================================================
 

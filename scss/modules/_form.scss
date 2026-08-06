@@ -17,7 +17,7 @@
         width: 100%;
         padding: 0.75rem 1rem;
         border: 1px solid $grey;
-        border-radius: $border-curved;
+        border-radius: $border-rad-curved;
         background-color: $white;
         outline: none;
         transition: border-color 0.2s, box-shadow 0.2s;
@@ -29,27 +29,6 @@
         &:focus {
             border-color: $grey;
             box-shadow: 0 0 0 3px rgba($grey, 0.15); // Clear active item halo
-        }
-    }
-
-    button[type="submit"] {
-        width: 100%;
-        // font-size: 0.95rem;
-        // font-weight: 600;
-        color: $grey;
-        border: none;
-        padding: 0.75rem 1.5rem;
-        border-radius: $border-curved;
-        cursor: pointer;
-        transition: background-color 0.15s ease;
-
-        &:hover {
-            color: $white;
-            background-color: $grey;
-        }
-
-        &:active {
-            transform: scale(0.99); // Interactive click depth feedback
         }
     }
 

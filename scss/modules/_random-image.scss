@@ -2,14 +2,21 @@
 // Random Image Holder
 // ==========================================================================
 
- #random-image-container {
+.image-generator{
+    border: $border-standard;
+    border-radius: $border-rad-smooth;
+    background-color: $colour-secondary;
+    padding: 10px;
+}
+
+ #random-image-container{
     margin: 20px 0;
     padding: 20px;
-    width: 100vw;
+    width: 100%;
     min-height: 400px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: $colour-secondary;
-    border-radius: 4px;
+    background: $colour-tertiary;
+    border-radius: $border-rad-curved;
 }

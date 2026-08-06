@@ -8,39 +8,46 @@
         <link rel="stylesheet" href="css/styles.css">
     </head>
     <body>
+        <header>
+            <h1>JavaScript Array - Image/Email Storage</h1>
+        </header>
         <div id="container">
-            <div class="retainer">
-                <h1>Image-Email Attatcher</h1>
+            <div class="retainer image-generator">
                 <h2>Random Image</h2>
+                <p>All images are provided by <a href="https://picsum.photos/">picsum.photos</a></p>
                 <div id="random-image-container"></div>
-                <!-- <button class="newRandom">New Random Image</button> -->
+                <button class="btn newRandom">New Random Image</button>
             </div>
-            <div class="retainer">
+            <div class="retainer input-email">
                 <h2>Input Email</h2>
                 <form id="emailForm" novalidate>
-                    <label for="user-email">Email Address:</label>
+                    <!-- <label for="user-email">Type in a valid Email address to assign to the image above:</label> -->
                     <input 
                         type="email" 
                         id="user-email" 
                         name="email" 
-                        placeholder="name@example.com" 
+                        placeholder="Enter a valid Email address to assign to the image above" 
                         required
                     >
-                    <button type="submit">Submit</button>
+                    <button class="btn" type="submit">Link Image</button>
                 </form>
             </div>
-            <div class="retainer">
-                <h2>Stored Image-Email Groups</h2>
+            <div class="retainer image-email-group">
+                <h2>Stored Image/Email Groups</h2>
+                <p>Any emails that are tied to an image are placed below. 
+                    <br>If the email already exists in the array, the image won't duplicate the email.</p>
                 <div id="email-image-storage"></div>
             </div>
+            
         </div>
-        <!-- load image from https://picsum.photos
-        tied to an email
-        submition form (with email validation)
-        When linked, a new image is to be loaded
-        The interface is to display all images assigned to each email address, the email address should only display once.
-        solution should run entirely in the browser without the need to be hosted on a web server. -->
-
+        <footer>
+            <div class="footer-retainer">
+                <p>
+                    Website created by Alexander Brown 
+                    <small>&#169</small>
+                </p>
+            </div>
+        </footer>
         <script src="js/main.js"></script>
     </body>
 </html>

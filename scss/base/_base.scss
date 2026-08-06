@@ -21,6 +21,7 @@ body {
 h1{
     font-size: $font-size--title;
     text-decoration: underline;
+    text-align: center;
 }
 
 h2{
@@ -34,13 +35,26 @@ h3{
 
 img {
     display: block;
-    border: 3px solid $colour-border;
+    border: $border-standard;
     
-    border-radius: $border-curved;
+    border-radius: $border-rad-curved;
     max-width: 100%;
     height: auto;
 }
 
 button {
     cursor: pointer;
+}
+
+p{
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+a{
+    color: $colour-font;
+    text-decoration: none;
+    &:hover{
+        text-decoration: underline;
+    }
 }

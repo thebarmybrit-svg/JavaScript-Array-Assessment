@@ -48,10 +48,7 @@ function blobToDataUrl(blob) {
 
 // Fetch a new random image from Picsum
 function loadRandomImage() {
-    const minId = 0;
-    const maxId = 1084;
-    const randomId = Math.floor(Math.random() * (maxId - minId + 1)) + minId;
-    const targetUrl = `https://picsum.photos/id/${randomId}/750/500`;
+    const targetUrl = `https://picsum.photos/750/500`;
 
     fetchData(targetUrl)
         .then(imageBlob => {
@@ -64,6 +61,11 @@ function loadRandomImage() {
             generateImage(currentImageDataUrl);
         });
 }
+
+ const newRandomButton = document.querySelector('.newRandom');
+    if (newRandomButton) {
+        newRandomButton.addEventListener('click', loadRandomImage);
+    }
 
 // Helper to append a single entry card or add an image to an existing card in the DOM
 function renderEntryToDOM(email, imageDataUrl) {
