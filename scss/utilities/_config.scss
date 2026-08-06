@@ -46,6 +46,7 @@ $colour-primary				: $dark-orchestra;
 $colour-secondary			: $dark-siena;
 $colour-tertiary			: $deep-crimson;
 $colour-font				: $pink-lace;
+$colour-font-placeholder	: rgba($black, .8);
 $colour-border				: rgba($charcoal-grey, .5);
 $colour-shadow				: rgba($black, .2);
 
@@ -75,7 +76,18 @@ $border-rad-smooth			: 12px;
 $border-rad-circle			: 50%;
 
 // Border styles
-$border-standard		: 3px solid $colour-border;
+$border-standard			: 3px solid $colour-border;
+$border-input				: 1px solid $grey;
+$border-single				: 3px solid $black;
+
+// Box Shadows
+$box-shadow-input			: 0 0 0 3px rgba($grey, 0.15);
+$box-shadow-image			: 3px 3px 3px 5px $colour-shadow;
+
+// Padding
+$padding-standard			: 12px 16px;
+$padding-container			: 36px;
+$gap-standard				: 24px;
 
 // ==========================================================================
 

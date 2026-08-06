@@ -5,31 +5,31 @@
 #email-image-storage {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-    margin-bottom: 25px;
+    gap: $gap-standard;
+    margin-bottom: $gap-standard;
 
     .stored-entry {
         display: flex;
         flex-wrap: wrap; /* Allows image-containers to flow into row(s) below */
-        gap: 25px; /* Space between the image containers */
-        padding: 0 20px;
+        gap: $gap-standard; /* Space between the image containers */
+        padding: 0 em(20px);
         justify-content: center;
         // Forces the email text to take up 100% width, pushing images to the next row
         > h3:first-child {
             width: 100%;
-            margin-bottom: 0.5rem;
+            margin-bottom: em(8px);
         }
 
         // Individual image container blocks
         .image-container {
             display: inline-flex;
             img{
-                width: 350px;
-                height: 250px;
-                box-shadow: 3px 3px 3px 5px $colour-shadow;
+                width: em(350px);
+                height: em(250px);
+                box-shadow: $box-shadow-image;
                 transition: transform 0.3s ease; // Smooths the movement
                 &:hover {
-                    transform: translateY(-8px); // Moves image up by 8px
+                    transform: translateY(em(-8px)); // Moves image up by 8px
                     cursor: pointer;
                 }
             }

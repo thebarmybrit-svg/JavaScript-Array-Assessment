@@ -3,9 +3,9 @@
 // ==========================================================================
 
 header{
-    border-radius: 0 0 $border-rad-smooth $border-rad-smooth;;
-    border-bottom: 3px solid $black;
+    border-radius: 0 0 $border-rad-smooth $border-rad-smooth;
+    border-bottom: $border-single;
     background-color: $colour-tertiary;
     width: 100vw;
-    padding: 10px 0;
+    padding: em(10px) 0;
 }

@@ -20,7 +20,7 @@
 
 @mixin mq($break) {
   @if $break == "micro" {
-    @media (min-width: $brkpoint-xs) and (max-width: ($brkpoint-sm - 1)) {
+    @media (min-width: $brkpoint-xs) and (max-width: ($brkpoint-sm - em(1px))) {
       @content;
     }
   }
@@ -30,7 +30,7 @@
     }
   }
   @else if $break == "small-only" {
-    @media (min-width: $brkpoint-sm) and (max-width: ($brkpoint-md - 1)){
+    @media (min-width: $brkpoint-sm) and (max-width: ($brkpoint-md - em(1px))){
       @content;
     }
   }
@@ -40,7 +40,7 @@
     }
   }
   @else if $break == "medium-only" {
-    @media (min-width: $brkpoint-md) and (max-width: ($brkpoint-lg - 1)){
+    @media (min-width: $brkpoint-md) and (max-width: ($brkpoint-lg - em(1px))){
       @content;
     }
   }

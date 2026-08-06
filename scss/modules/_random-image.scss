@@ -6,14 +6,14 @@
     border: $border-standard;
     border-radius: $border-rad-smooth;
     background-color: $colour-secondary;
-    padding: 10px;
+    padding: em(10px);
 }
 
  #random-image-container{
-    margin: 20px 0;
-    padding: 20px;
+    margin: em(20px) 0;
+    padding: em(20px);
     width: 100%;
-    min-height: 400px;
+    min-height: em(400px);
     display: flex;
     align-items: center;
     justify-content: center;
