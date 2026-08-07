@@ -17,5 +17,18 @@
         flex-direction: column;
         align-items: center;
         width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+
+        &.image-generator{
+            border: $border-standard;
+            border-radius: $border-rad-smooth;
+            background-color: $colour-secondary;
+            padding: em(10px);
+            gap: $gap-standard;
+            max-width: $brkpoint-lg;
+            flex-direction: row;
+            align-items: flex-start;
+        }
     }
 }

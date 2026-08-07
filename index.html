@@ -13,10 +13,28 @@
         </header>
         <div id="container">
             <div class="retainer image-generator">
-                <!-- <h2>Random Image</h2>
-                <p>All images are provided by <a href="https://picsum.photos/">picsum.photos</a></p> -->
-                <div id="random-image-container"></div>
-                <button class="btn newRandom">New Random Image</button>
+                <!-- Left column wrapper -->
+                <div class="media-controls">
+                    <div id="random-image-container"></div>
+                    <button class="btn newRandom">New Random Image</button>
+                </div>
+                <!-- Right column -->
+                <div class="intructions">
+                    <ul>
+                        <h3>Instructions</h3>
+                        <li>
+                            <span class="icon icon-file-picture"></span>
+                            Generate random image, either by refreshing the page or clicking the "new random image" button.</li>
+                        <li>
+                            <span class="icon icon-mail4"></span>
+                            Fill out a valid email in the form below, then click the "link email" button.</li>
+                        <li>
+                            <span class="icon icon-images"></span>
+                            The valid email will be successfully linked to the image and displayed below. 
+                            If the email submitted is the same as a previously submitted email, the image will be added to the existing email, not creating a new section.
+                        </li>
+                    </ol>
+                </div>
             </div>
             <div class="retainer input-email">
                 <!-- <h2>Input Email</h2> -->
@@ -29,7 +47,10 @@
                         placeholder="Enter valid Email" 
                         required
                     >
-                    <button class="btn" type="submit">Link Image</button>
+                    <button class="btn" type="submit">
+                        <span class="icon icon-link"></span>
+                        Link Image
+                    </button>
                 </form>
             </div>
             <div class="retainer image-email-group">
@@ -48,6 +69,15 @@
                 </p>
             </div>
         </footer>
+        <!-- Lightbox Overlay Container -->
+        <div id="image-lightbox" class="lightbox-overlay">
+            <div class="lightbox-content">
+                <!-- Close Button -->
+                <button id="lightbox-close" class="lightbox-close">&times;</button>
+                <!-- Enlarged Image -->
+                <img id="lightbox-img" src="" alt="Enlarged view">
+            </div>
+        </div>
         <script src="js/main.js"></script>
     </body>
 </html>

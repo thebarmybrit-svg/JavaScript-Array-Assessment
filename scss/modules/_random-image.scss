@@ -2,15 +2,14 @@
 // Random Image Holder
 // ==========================================================================
 
-.image-generator{
-    border: $border-standard;
-    border-radius: $border-rad-smooth;
-    background-color: $colour-secondary;
-    padding: em(10px);
+.media-controls {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
- #random-image-container{
-    margin: em(20px) 0;
+#random-image-container {
+    margin: 0 0 em(20px) 0;
     padding: em(20px);
     width: 100%;
     min-height: em(400px);
@@ -19,4 +18,20 @@
     justify-content: center;
     background: $colour-tertiary;
     border-radius: $border-rad-curved;
+}
+
+.btn.newRandom {
+    align-self: flex-start;
+}
+
+.intructions {
+    flex: 1; 
+    margin: 0;
+
+    ul {
+        list-style: none;
+        li {
+            margin-bottom: em(10px);
+        }
+    }
 }

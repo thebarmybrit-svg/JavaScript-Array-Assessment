@@ -194,3 +194,45 @@ document.getElementById('emailForm').addEventListener('submit', function(event) 
     emailInput.value = '';
     loadRandomImage();
 });
+
+// LIGHTBOX OVERLAY
+const lightbox = document.getElementById('image-lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const closeBtn = document.getElementById('lightbox-close');
+
+// Listen for clicks on images inside your specific storage block
+document.querySelectorAll('#email-image-storage .image-container img').forEach(img => {
+    img.addEventListener('click', (e) => {
+        // Set the modal image source to match the clicked image source
+        lightboxImg.src = e.target.src;
+        lightboxImg.alt = e.target.alt;
+        // Show the lightbox
+        lightbox.classList.add('is-active');
+        // Optional: Prevent background scrolling while open
+        document.body.style.overflow = 'hidden'; 
+    });
+});
+
+// Helper function to close the lightbox
+const closeLightbox = () => {
+    lightbox.classList.remove('is-active');
+    lightboxImg.src = ''; // Clear source
+    document.body.style.overflow = ''; // Restore scrolling
+};
+
+// Close when clicking the "X" button
+closeBtn.addEventListener('click', closeLightbox);
+
+// Close when clicking outside the image (on the dimmed background overlay)
+lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) {
+        closeLightbox();
+    }
+});
+
+// Close when hitting the Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightbox.classList.contains('is-active')) {
+        closeLightbox();
+    }
+});
