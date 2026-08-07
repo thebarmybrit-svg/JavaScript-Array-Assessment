@@ -2,10 +2,24 @@
 // Random Image Holder
 // ==========================================================================
 
+.intructions {
+    order: -1; // Pushes instructions to the top of the stack
+    margin: 0 0 em(20px) 0;
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        
+        li {
+            margin-bottom: em(10px);
+        }
+    }
+}
+
 .media-controls {
     display: flex;
     flex-direction: column;
-    flex: 1;
 }
 
 #random-image-container {
@@ -24,14 +38,15 @@
     align-self: flex-start;
 }
 
-.intructions {
-    flex: 1; 
-    margin: 0;
-
-    ul {
-        list-style: none;
-        li {
-            margin-bottom: em(10px);
-        }
+// Tablet / Desktop View
+@include mq(medium){
+    .intructions {
+        order: 0; // Resets order so it displays on the right side
+        flex: 1; 
+        margin: 0;
+    }
+    
+    .media-controls {
+        flex: 1;
     }
 }

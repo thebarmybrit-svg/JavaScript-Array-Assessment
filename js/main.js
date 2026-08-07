@@ -200,18 +200,22 @@ const lightbox = document.getElementById('image-lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 const closeBtn = document.getElementById('lightbox-close');
 
-// Listen for clicks on images inside your specific storage block
-document.querySelectorAll('#email-image-storage .image-container img').forEach(img => {
-    img.addEventListener('click', (e) => {
-        // Set the modal image source to match the clicked image source
-        lightboxImg.src = e.target.src;
-        lightboxImg.alt = e.target.alt;
-        // Show the lightbox
-        lightbox.classList.add('is-active');
-        // Optional: Prevent background scrolling while open
-        document.body.style.overflow = 'hidden'; 
+// USE EVENT DELEGATION: Listen to the parent container instead of individual images
+const storageContainer = document.getElementById('email-image-storage');
+if (storageContainer) {
+    storageContainer.addEventListener('click', (e) => {
+        // Only run the lightbox logic if the clicked element is an image inside an .image-container
+        if (e.target.tagName === 'IMG' && e.target.closest('.image-container')) {
+            // Set the modal image source to match the clicked image source
+            lightboxImg.src = e.target.src;
+            lightboxImg.alt = e.target.alt;
+            // Show the lightbox
+            lightbox.classList.add('is-active');
+            // Prevent background scrolling while open
+            document.body.style.overflow = 'hidden'; 
+        }
     });
-});
+}
 
 // Helper function to close the lightbox
 const closeLightbox = () => {

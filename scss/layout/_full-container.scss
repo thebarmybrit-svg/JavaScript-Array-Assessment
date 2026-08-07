@@ -25,10 +25,14 @@
             border-radius: $border-rad-smooth;
             background-color: $colour-secondary;
             padding: em(10px);
-            gap: $gap-standard;
             max-width: $brkpoint-lg;
-            flex-direction: row;
+            flex-direction: column;
             align-items: flex-start;
+            
+            @include mq(medium){
+                flex-direction: row; // Switches layout to side-by-side columns
+                gap: $gap-standard;
+            }
         }
     }
 }

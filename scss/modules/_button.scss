@@ -4,7 +4,8 @@
 
 .btn{
     width: 100%;
-    color: $grey;
+    background-color: $colour-font;
+    color: $colour-btn;
     border: none;
     padding: $padding-standard;
     border-radius: $border-rad-curved;
@@ -12,8 +13,8 @@
     transition: background-color 0.15s ease;
 
     &:hover {
-        color: $white;
-        background-color: $grey;
+        color: $colour-font;
+        background-color: $colour-btn;
     }
 
     &:active {
