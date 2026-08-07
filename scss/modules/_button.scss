@@ -10,7 +10,8 @@
     padding: $padding-standard;
     border-radius: $border-rad-curved;
     cursor: pointer;
-    transition: background-color 0.15s ease;
+    transition: $trans-colour;
+    font-weight: $font-weight--bold;
 
     &:hover {
         color: $colour-font;
@@ -20,4 +21,36 @@
     &:active {
         transform: scale(0.99); // Interactive click depth feedback
     }
+
+    &.btn-delete-image{
+        background-color: palette(red);
+        border: none;
+        width: em(15px);
+        padding: 0;
+        &:hover{
+            background-color: palette(red, dark);
+        }
+        &:active{
+            background-color: palette(red, light);
+        }
+    }
+
+    &.btn-secondary {
+        background-color: palette(grey);
+        color: $colour-font-dark;
+
+        &:hover {
+            background-color: palette(grey, light);
+        }
+    }
+
+    &.btn-danger {
+        background-color: palette(red);
+        color: $white;
+
+        &:hover {
+            background-color: palette(red, dark);
+        }
+    }
 }
+

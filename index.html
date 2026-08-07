@@ -9,7 +9,7 @@
     </head>
     <body>
         <header>
-            <h1>JavaScript Array - Image/Email Storage</h1>
+            <h1>Attach Emails to Images</h1>
         </header>
         <div id="container">
             <div class="retainer image-generator">
@@ -32,6 +32,11 @@
                             <span class="icon icon-images"></span>
                             The valid email will be successfully linked to the image and displayed below. 
                             If the email submitted is the same as a previously submitted email, the image will be added to the existing email, not creating a new section.
+                        </li>
+                        <li>
+                            <span class="icon icon-bin"></span>
+                            You may delete any images in the stored sections, detatching them from the email and removed from the array, by clicking the red button to their right.
+                            If this results in the last image attached to the email removed, the saved email address is also removed.
                         </li>
                     </ul>
                 </div>
@@ -76,6 +81,16 @@
                 <button id="lightbox-close" class="lightbox-close">&times;</button>
                 <!-- Enlarged Image -->
                 <img id="lightbox-img" src="" alt="Enlarged view">
+            </div>
+        </div>
+        <div id="delete-confirm" class="custom-confirm">
+            <div class="confirm-content">
+                <h4>Are you sure?</h4>
+                <p>This will permanently delete the image from your storage history.</p>
+                <div class="confirm-actions">
+                    <button id="cancel-delete-btn" class="btn btn-secondary">Cancel</button>
+                    <button id="confirm-delete-btn" class="btn btn-danger">Delete</button>
+                </div>
             </div>
         </div>
         <script src="js/main.js"></script>

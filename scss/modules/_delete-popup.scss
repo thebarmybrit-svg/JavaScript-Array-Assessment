@@ -1,0 +1,57 @@
+// ==========================================================================
+// Detetion Confirmation
+// ==========================================================================
+
+.custom-confirm {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+    background-color: $colour-dimmed-bg;
+    align-items: center;
+    justify-content: center;
+    
+    // Smooth fade visibility configurations
+    opacity: 0;
+    pointer-events: none;
+    transition: $trans-form;
+
+    // Trigger state class handled by JS
+    &.is-active {
+        opacity: 1;
+        pointer-events: auto;
+
+        .confirm-content {
+            transform: translateY(0);
+            scale: 1;
+        }
+    }
+}
+
+// Container Element
+.confirm-content {
+    background-color: $white;
+    padding: $padding-standard;
+    border-radius: $border-rad-curved;
+    width: 90%;
+    max-width: em(420px);
+    box-shadow: $box-shadow-warning;
+    
+    // Scale animation entrance anchor 
+    transform: translateY(20px);
+    transition: $trans-form;
+
+    p {
+        color: $colour-font-placeholder;
+    }
+}
+
+// Actions layout
+.confirm-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: $gap-standard;
+}

@@ -27,7 +27,7 @@
                 width: em(350px);
                 height: em(250px);
                 box-shadow: $box-shadow-image;
-                transition: transform 0.3s ease; // Smooths the movement
+                transition: $trans-form;
                 &:hover {
                     transform: translateY(em(-8px)); // Moves image up by 8px
                     cursor: pointer;

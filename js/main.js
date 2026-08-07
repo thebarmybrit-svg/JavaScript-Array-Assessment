@@ -2,7 +2,6 @@
 // JavaScripts
 // ==========================================================================
 
-
 // GENERATE RANDOM IMAGE
 // Global variable to keep track of the current image data (as a Base64 Data URL)
 let currentImageDataUrl = '';
@@ -101,8 +100,15 @@ function renderEntryToDOM(email, imageDataUrl) {
     imgCopy.src = imageDataUrl;
     imgCopy.alt = `Saved image for ${normalisedEmail}`;
     
-    // Nest the image inside the wrapper, then add the wrapper to the card
+     // Create the delete button
+    const deleteBtn = document.createElement('button');
+    deleteBtn.className = 'btn btn-delete-image';
+    deleteBtn.textContent = '×'; // Clean 'X' multiplication symbol
+    deleteBtn.title = 'Delete this image';
+
+    // Nest the image and delete button inside the wrapper, then add the wrapper to the card
     imageContainer.appendChild(imgCopy);
+    imageContainer.appendChild(deleteBtn); // Add the button here
     card.appendChild(imageContainer);
 }
 
@@ -156,6 +162,30 @@ function saveEntryToStorage(email, imageDataUrl) {
         entries.push({ email: normalisedEmail, images: [imageDataUrl] });
     }
     
+    localStorage.setItem('userSubmissions', JSON.stringify(entries));
+}
+
+// Remove an individual image from a specific email entry in localStorage
+function deleteEntryFromStorage(email, imageDataUrl) {
+    const savedData = localStorage.getItem('userSubmissions');
+    if (!savedData) return;
+
+    let entries = JSON.parse(savedData);
+    const normalisedEmail = email.toLowerCase();
+
+    // Find the record matching this email
+    const existingEntry = entries.find(entry => entry.email.toLowerCase() === normalisedEmail);
+
+    if (existingEntry && existingEntry.images) {
+        // Filter out the deleted image string
+        existingEntry.images = existingEntry.images.filter(img => img !== imageDataUrl);
+
+        // If the user profile has zero images remaining, remove the whole user account
+        if (existingEntry.images.length === 0) {
+            entries = entries.filter(entry => entry.email.toLowerCase() !== normalisedEmail);
+        }
+    }
+
     localStorage.setItem('userSubmissions', JSON.stringify(entries));
 }
 
@@ -217,6 +247,86 @@ if (storageContainer) {
     });
 }
 
+// DELETE IMAGE
+// MODAL STATE TRACKING VARIABLES
+let imageContainerToDelete = null;
+let cardToDelete = null;
+
+const deleteModal = document.getElementById('delete-confirm');
+const cancelDeleteBtn = document.getElementById('cancel-delete-btn');
+const confirmDeleteBtn = document.getElementById('confirm-delete-btn');
+
+// Helper to toggle modal visibility
+function toggleDeleteModal(isOpen) {
+    if (isOpen) {
+        deleteModal.classList.add('is-active');
+        document.body.style.overflow = 'hidden'; // Stop background scroll
+    } else {
+        deleteModal.classList.remove('is-active');
+        document.body.style.overflow = '';
+        // Clear references
+        imageContainerToDelete = null;
+        cardToDelete = null;
+    }
+}
+
+// DELETE BUTTON DELEGATION: Listen to clicks inside the permanent parent container
+if (storageContainer) {
+    storageContainer.addEventListener('click', (e) => {
+        if (e.target.classList.contains('btn-delete-image')) {
+            const container = e.target.closest('.image-container');
+            const card = e.target.closest('.stored-entry');
+            
+            if (!container || !card) return;
+
+            // Store current target elements in global tracker variable
+            imageContainerToDelete = container;
+            cardToDelete = card;
+
+            // Trigger visual modal pop up
+            toggleDeleteModal(true);
+        }
+    });
+}
+
+// CONFIRM DELETION ACTION
+confirmDeleteBtn.addEventListener('click', () => {
+    if (imageContainerToDelete && cardToDelete) {
+        const targetImg = imageContainerToDelete.querySelector('img');
+        const email = cardToDelete.getAttribute('data-email');
+        
+        if (targetImg && email) {
+            // 1. Remove from localStorage arrays
+            deleteEntryFromStorage(email, targetImg.src);
+
+            // 2. Remove specific HTML nodes from DOM
+            imageContainerToDelete.remove();
+
+            // 3. Sweep away parent container if completely empty
+            if (cardToDelete.querySelectorAll('.image-container').length === 0) {
+                cardToDelete.remove();
+            }
+        }
+    }
+    toggleDeleteModal(false);
+});
+
+// CANCEL DELETION ACTIONS
+cancelDeleteBtn.addEventListener('click', () => toggleDeleteModal(false));
+
+// Close modal when clicking dark overlay frame background
+deleteModal.addEventListener('click', (e) => {
+    if (e.target === deleteModal) {
+        toggleDeleteModal(false);
+    }
+});
+
+// Close modal when hitting the Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && deleteModal.classList.contains('is-active')) {
+        toggleDeleteModal(false);
+    }
+});
 // Helper function to close the lightbox
 const closeLightbox = () => {
     lightbox.classList.remove('is-active');

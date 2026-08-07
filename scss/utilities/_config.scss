@@ -16,11 +16,11 @@ $font-weight--bold       : 600;
 $font-weight--ultra-bold : 900;
 
 // Text
-$base__font-size    : 18px;
+$base__font-size    : 16px;
 $font-size--title   : 48px; 
 $font-size--prim    : 36px;
-$font-size--secn    : 23px;
-$font-size--thrd    : 16px;
+$font-size--secn    : 24px;
+$font-size--thrd    : 18px;
 $font-size--small   : 13px;
 $base__line         : 24px;
 $letter-space       : 1px;
@@ -41,33 +41,41 @@ $charcoal-grey			: #2f2e30;
 $deep-crimson			: #180d0d;
 $dark-siena				: #291616;
 $deep-forest			: #0a1c0b;
+$cancel-red				: #b10505;
 
 // Colour Specifications
 $colour-primary				: $dark-orchestra;
 $colour-secondary			: $dark-siena;
 $colour-tertiary			: $deep-crimson;
 $colour-font				: $pink-lace;
+$colour-font-dark			: $charcoal-grey;
 $colour-btn					: $deep-forest;
 
 $colour-font-placeholder	: rgba($charcoal-grey, .8);
 $colour-border				: rgba($charcoal-grey, .5);
+$colour-shadow-faint		: rgba($black, 0.1);
 $colour-shadow				: rgba($black, .2);
 $colour-dimmed-bg			: rgba($black, .8);
 
 // Color Palette Modifiers
 $color-palettes: (
 	grey: (
-		xx-light : lighten($grey, 43%),
-		x-light  : lighten($grey, 35%),
-	  light    : lighten($grey, 12%),
-	  base     : $grey,
-	 	dark     : darken($grey, 8%),
-	 	x-dark   : darken($grey, 16%)
+		xx-light	: lighten($grey, 43%),
+		x-light		: lighten($grey, 35%),
+		light		: lighten($grey, 12%),
+		base		: $grey,
+		dark		: darken($grey, 8%),
+		x-dark		: darken($grey, 16%)
 	),
 	black: (
-		light    : lighten($black, 10%),
-		base     : $black,
-		dark     : darken($black, 10%)
+		light		: lighten($black, 10%),
+		base		: $black,
+		dark		: darken($black, 10%)
+	),
+	red: (
+		light		: lighten($cancel-red, 10%),
+		base		: $cancel-red,
+		dark		: darken($cancel-red, 10%)
 	)
 );
 
@@ -87,11 +95,18 @@ $border-single				: 3px solid $black;
 // Box Shadows
 $box-shadow-input			: 0 0 0 3px rgba($grey, 0.15);
 $box-shadow-image			: 3px 3px 3px 5px $colour-shadow;
+$box-shadow-warning			: 0 10px 25px -5px $colour-shadow-faint;
 
 // Padding
 $padding-standard			: 12px 16px;
 $padding-container			: 36px;
 $gap-standard				: 24px;
+
+// Transitions
+$trans-form					: transform 0.3s ease-in-out;
+$trans-colour				: background-color 0.3s ease-in-out;
+$trans-border				: border-color 0.3s ease;
+$trans-shadow				: box-shadow 0.3s ease;
 
 // ==========================================================================
 
