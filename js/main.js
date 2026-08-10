@@ -159,10 +159,16 @@ function saveEntryToStorage(email, imageDataUrl) {
             existingEntry.images = [];
             if (existingEntry.imageDataUrl) {
                 existingEntry.images.push(existingEntry.imageDataUrl);
-                delete existingEntry.imageDataUrl; // Optional: clean up the old legacy key
+                delete existingEntry.imageDataUrl; // Clean up the old legacy key
             }
         }
-        // If it exists, push the new image to its array
+        
+        // CRITICAL CHECK: Do not push if it already exists
+        if (existingEntry.images.includes(imageDataUrl)) {
+            return; 
+        }
+        
+        // If it exists and is unique, push the new image to its array
         existingEntry.images.push(imageDataUrl);
     } else {
         // If it's a new email, create an entry with a lowercase email
@@ -212,8 +218,7 @@ document.getElementById('emailForm').addEventListener('submit', function(event) 
     // Validate the email format
     if (!emailPattern.test(emailValue)) {
         // Show error popup if incorrect
-        alert(`The email "${emailValue}" you inputted is not an acceptable email address. 
-            \nPlease check the formatting and try again.`);
+        alert(`The email "${emailValue}" you inputted is not an acceptable email address. \n\nPlease check the formatting and try again.`);
         emailInput.style.borderColor = 'red';
         emailInput.focus();
         return; 
@@ -221,16 +226,34 @@ document.getElementById('emailForm').addEventListener('submit', function(event) 
 
     emailInput.style.borderColor = '';
 
+    // Check if this exact email and image pairing already exists in storage
+    const savedData = localStorage.getItem('userSubmissions');
+    if (savedData) {
+        const entries = JSON.parse(savedData);
+        const normalisedEmail = emailValue.toLowerCase();
+        const existingEntry = entries.find(entry => entry.email.toLowerCase() === normalisedEmail);
+
+        if (existingEntry) {
+            // Check old flat property fallback or new array format
+            const hasDuplicateImage = (existingEntry.images && existingEntry.images.includes(currentImageDataUrl)) || (existingEntry.imageDataUrl === currentImageDataUrl);  
+            if (hasDuplicateImage) {
+                alert(`The image you are trying to add has already been saved to the account: ${emailValue}. Duplicates are not allowed.`);
+                return; // Stop execution: does not render to DOM, does not save
+            }
+        }
+    }
+
     // Render directly to UI
     renderEntryToDOM(emailValue, currentImageDataUrl);
 
     // Save permanently to localStorage
     saveEntryToStorage(emailValue, currentImageDataUrl);
 
-    // Clean up interface for next entry
-    emailInput.value = '';
-    loadRandomImage();
+    // Clean up interface for next entry - removed
+    // emailInput.value = '';
+    // loadRandomImage();
 });
+
 
 // LIGHTBOX OVERLAY
 const lightbox = document.getElementById('image-lightbox');
