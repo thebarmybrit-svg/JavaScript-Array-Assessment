@@ -25,10 +25,13 @@
     &.btn-delete-image{
         background-color: palette(red);
         border: none;
+        color: $black;
         // width: em(15px);
         padding: 0 em(5px);
+        z-index: 998;
         &:hover{
             background-color: palette(red, dark);
+            color: $colour-font;
         }
         &:active{
             background-color: palette(red, light);

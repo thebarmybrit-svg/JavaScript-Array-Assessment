@@ -40,8 +40,9 @@ $pink-lace				: #ffdde1;
 $charcoal-grey			: #2f2e30;
 $deep-crimson			: #180d0d;
 $dark-siena				: #291616;
-$deep-forest			: #0a1c0b;
+$deep-forest			: #114d14;
 $cancel-red				: #b10505;
+$curious-blue           : #337ab7;
 
 // Colour Specifications
 $colour-primary				: $dark-orchestra;
@@ -93,7 +94,7 @@ $border-input				: 1px solid $grey;
 $border-single				: 3px solid $black;
 
 // Box Shadows
-$box-shadow-input			: 0 0 0 3px rgba($grey, 0.15);
+$box-shadow-input			: 0 0 5px 2px $curious-blue;
 $box-shadow-image			: 3px 3px 3px 5px $colour-shadow;
 $box-shadow-warning			: 0 10px 25px -5px $colour-shadow-faint;
 

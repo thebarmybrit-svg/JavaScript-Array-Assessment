@@ -18,26 +18,28 @@ body {
     overflow-x: hidden;
 }
 
-h1{
-    font-size: $font-size--title;
-    text-decoration: underline;
+h4, .h4{
+    color: $colour-font-dark;
+    font-size: $font-size--thrd;
     text-align: center;
 }
 
-h2{
+h3, .h3{
+    font-size: $font-size--secn;
+    text-align: start;
+}
+
+h2, .h2{
     font-size: $font-size--prim;
     margin-bottom: auto;
     text-align: center;
 }
 
-h3{
-    font-size: $font-size--secn;
-}
-
-h4{
-    color: $colour-font-dark;
-    font-size: $font-size--thrd;
+h1, .h1{
+    font-size: $font-size--title;
+    text-decoration: underline;
     text-align: center;
+    padding: 0 em(10px);
 }
 
 img {
