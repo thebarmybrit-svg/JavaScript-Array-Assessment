@@ -11,11 +11,18 @@ function generateImage(imageUrl) {
     const container = document.getElementById('random-image-container');
     if (!container) return; // Guard clause if HTML is missing
     
-    container.innerHTML = ''; 
-    const img = document.createElement('img');
-    img.src = imageUrl;
-    img.alt = "Random photo from Picsum";    
-    container.appendChild(img);
+    // Create a temporary image object in memory
+    const tempImg = new Image();
+    tempImg.alt = "Random photo from Picsum";
+    
+    // Set up the onload listener BEFORE setting the src
+    tempImg.onload = function() {
+        container.innerHTML = ''; // Safely clear now that the image is ready
+        container.appendChild(tempImg); // Append the preloaded element
+    };
+    
+    // Trigger the network request
+    tempImg.src = imageUrl;
 }
 
 // Response validator
@@ -61,10 +68,11 @@ function loadRandomImage() {
         });
 }
 
- const newRandomButton = document.querySelector('.newRandom');
-    if (newRandomButton) {
-        newRandomButton.addEventListener('click', loadRandomImage);
-    }
+// Generates new random image
+const newRandomButton = document.querySelector('.newRandom');
+if (newRandomButton) {
+    newRandomButton.addEventListener('click', loadRandomImage);
+}
 
 // Helper to append a single entry card or add an image to an existing card in the DOM
 function renderEntryToDOM(email, imageDataUrl) {
@@ -102,8 +110,7 @@ function renderEntryToDOM(email, imageDataUrl) {
     
      // Create the delete button
     const deleteBtn = document.createElement('button');
-    deleteBtn.className = 'btn btn-delete-image';
-    deleteBtn.textContent = '×'; // Clean 'X' multiplication symbol
+    deleteBtn.className = 'btn btn-delete-image icon-cross';
     deleteBtn.title = 'Delete this image';
 
     // Nest the image and delete button inside the wrapper, then add the wrapper to the card
@@ -248,7 +255,6 @@ if (storageContainer) {
 }
 
 // DELETE IMAGE
-// MODAL STATE TRACKING VARIABLES
 let imageContainerToDelete = null;
 let cardToDelete = null;
 

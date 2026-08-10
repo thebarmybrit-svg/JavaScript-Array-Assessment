@@ -25,8 +25,8 @@
     &.btn-delete-image{
         background-color: palette(red);
         border: none;
-        width: em(15px);
-        padding: 0;
+        // width: em(15px);
+        padding: 0 em(5px);
         &:hover{
             background-color: palette(red, dark);
         }

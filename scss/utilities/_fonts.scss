@@ -4,11 +4,11 @@
 
 @font-face {
   font-family: 'icomoon';
-  src:  url('../fonts/icomoon.eot?2ao9zd');
-  src:  url('../fonts/icomoon.eot?2ao9zd#iefix') format('embedded-opentype'),
-    url('../fonts/icomoon.ttf?2ao9zd') format('truetype'),
-    url('../fonts/icomoon.woff?2ao9zd') format('woff'),
-    url('../fonts/icomoon.svg?2ao9zd#icomoon') format('svg');
+  src:  url('../fonts/icomoon.eot?tfwk6i');
+  src:  url('../fonts/icomoon.eot?tfwk6i#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?tfwk6i') format('truetype'),
+    url('../fonts/icomoon.woff?tfwk6i') format('woff'),
+    url('../fonts/icomoon.svg?tfwk6i#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -40,6 +40,9 @@
 }
 .icon-link:before {
   content: "\e9cb";
+}
+.icon-cross:before {
+  content: "\ea0f";
 }
 .icon-mail4:before {
   content: "\ea86";
