@@ -23,11 +23,16 @@
     }
 
     &.btn-delete-image{
+        font-size: $font-size--small;
+        position: absolute;
+        top: em(5px); 
+        right: em(5px); 
+        width: auto;
         background-color: palette(red);
         border: none;
+        border-radius: $border-rad-circle;
         color: $black;
-        // width: em(15px);
-        padding: 0 em(5px);
+        padding: em(10px);
         z-index: 998;
         &:hover{
             background-color: palette(red, dark);

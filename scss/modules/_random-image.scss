@@ -23,14 +23,11 @@
 }
 
 #random-image-container {
-    margin: 0 0 em(20px) 0;
-    padding: em(20px);
     width: 100%;
     min-height: em(400px);
     display: flex;
     align-items: center;
     justify-content: center;
-    background: $colour-tertiary;
     border-radius: $border-rad-curved;
 }
 
@@ -48,5 +45,11 @@
     
     .media-controls {
         flex: 1;
+    }
+
+    #random-image-container {
+        margin: 0 0 em(20px) 0;
+        padding: em(20px);
+        background: $colour-tertiary;
     }
 }

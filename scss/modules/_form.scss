@@ -7,6 +7,7 @@
     display: flex;
     flex-direction: column;
     gap: em(12px);
+    justify-content: center;
 
     label {
         align-self: flex-start;
@@ -43,11 +44,16 @@
         }
 
         input[type="email"] {
-            flex: 1; // Claims remaining row spaces flexibly
+            flex: .9; // Claims remaining row spaces flexibly
         }
 
         button[type="submit"] {
             width: auto; // Collapses button down tightly around text sizes
+        }
+    }
+    @include mq(large){
+        input[type="email"] {
+            flex: .75;
         }
     }
 }

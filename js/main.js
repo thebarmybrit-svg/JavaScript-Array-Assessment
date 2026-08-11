@@ -359,7 +359,8 @@ document.addEventListener('keydown', (e) => {
 // Helper function to close the lightbox
 const closeLightbox = () => {
     lightbox.classList.remove('is-active');
-    lightboxImg.src = ''; // Clear source
+    lightboxImg.src = 'img/images.png'; // Clear source
+    lightboxImg.alt = 'Enlarged view'; 
     document.body.style.overflow = ''; // Restore scrolling
 };
 

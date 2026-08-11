@@ -5,6 +5,10 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="ROBOTS" content="NOINDEX,NOFOLLOW">
+        <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+        <link rel="manifest" href="/favicon/site.webmanifest">
         <link rel="stylesheet" href="css/styles.css">
     </head>
     <body>
@@ -27,15 +31,21 @@
                             Generate random image, either by refreshing the page or clicking the "new random image" button.</li>
                         <li>
                             <span class="icon icon-mail4"></span>
-                            Fill out a valid email in the form below, then click the "link email" button.</li>
+                            Fill out a valid email in the form below, then click the "link email" button.
+                            You may link multiple emails to the same image, but you cannot link duplicate images to emails.</li>
                         <li>
-                            <span class="icon icon-images"></span>
+                            <span class="icon icon-link"></span>
                             The valid email will be successfully linked to the image and displayed below. 
                             If the email submitted is the same as a previously submitted email, the image will be added to the existing email, not creating a new section.
                         </li>
                         <li>
+                            <span class="icon icon-images"></span>
+                            You may click on the images below to get a ful view of the image, 
+                            and can exit the view either by clicking off the image or the x on the top right.
+                        </li>
+                        <li>
                             <span class="icon icon-bin"></span>
-                            You may delete any images in the stored sections, detatching them from the email and removed from the array, by clicking the red button to their right.
+                            You may delete any images in the stored sections, detatching them from the email and removed from the array, by clicking the red button in the top right corner.
                             If this results in the last image attached to the email removed, the saved email address is also removed.
                         </li>
                     </ul>
@@ -58,8 +68,8 @@
             </div>
             <div class="retainer image-email-group">
                 <h2>Stored Linked Emails and Images</h2>
-                <p>Any emails that are tied to an image are placed below. 
-                    <br>If the email already exists in the array, the image won't duplicate the email.</p>
+                <p>
+                </p>
                 <div id="email-image-storage"></div>
             </div>
             
@@ -78,7 +88,7 @@
                 <!-- Close Button -->
                 <button id="lightbox-close" class="lightbox-close">&times;</button>
                 <!-- Enlarged Image -->
-                <img id="lightbox-img" alt="Enlarged view">
+                <img id="lightbox-img" src="img/images.png" alt="Enlarged view">
             </div>
         </div>
         <div id="delete-confirm" class="custom-confirm">

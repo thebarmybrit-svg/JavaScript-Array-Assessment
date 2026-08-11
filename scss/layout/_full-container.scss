@@ -27,7 +27,6 @@
             padding: em(10px);
             max-width: $brkpoint-lg;
             flex-direction: column;
-            align-items: flex-start;
             
             @include mq(medium){
                 flex-direction: row; // Switches layout to side-by-side columns

@@ -10,8 +10,8 @@
 
     .stored-entry {
         display: flex;
-        flex-wrap: wrap; /* Allows image-containers to flow into row(s) below */
-        gap: $gap-standard; /* Space between the image containers */
+        flex-wrap: wrap; // Allows image-containers to flow into row(s) below
+        gap: $gap-standard; // Space between the image containers
         padding: 0 em(20px);
         justify-content: center;
         // Forces the email text to take up 100% width, pushing images to the next row
@@ -23,14 +23,17 @@
         // Individual image container blocks
         .image-container {
             display: inline-flex;
+            position: relative; // Acts as the anchor boundary for the absolute button
+            transition: $trans-form;
+            &:hover {
+                transform: translateY(em(-8px)); // Moves image up by 8px
+                cursor: pointer;
+            }
             img{
-                width: em(350px);
-                height: em(250px);
                 box-shadow: $box-shadow-image;
-                transition: $trans-form;
-                &:hover {
-                    transform: translateY(em(-8px)); // Moves image up by 8px
-                    cursor: pointer;
+                @include mq(medium){
+                    width: em(360px);
+                    height: em(240px);
                 }
             }
         }
