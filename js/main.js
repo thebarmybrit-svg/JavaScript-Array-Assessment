@@ -207,6 +207,27 @@ loadSavedEntries();
 loadRandomImage();
 
 
+// Helper function to handle custom popup logic
+function showCustomPopup(message, onCloseCallback) {
+    const popup = document.getElementById('customPopup');
+    const popupMessage = document.getElementById('customPopupMessage');
+    const closeBtn = document.getElementById('customPopupClose');
+
+    // Set text and reveal modal
+    popupMessage.textContent = message;
+    popup.classList.add('is-active');
+    closeBtn.focus();
+
+    // Clean up previous event listeners to avoid memory leaks
+    const handleClose = () => {
+        popup.classList.remove('is-active');
+        closeBtn.removeEventListener('click', handleClose);
+        if (onCloseCallback) onCloseCallback();
+    };
+
+    closeBtn.addEventListener('click', handleClose);
+}
+
 // EMAIL FORM SUBMISSION
 document.getElementById('emailForm').addEventListener('submit', function(event) {
     event.preventDefault();
@@ -215,12 +236,17 @@ document.getElementById('emailForm').addEventListener('submit', function(event) 
     const emailValue = emailInput.value.trim();
     // Email Validation pattern
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
     // Validate the email format
     if (!emailPattern.test(emailValue)) {
-        // Show error popup if incorrect
-        alert(`The email "${emailValue}" you inputted is not an acceptable email address. \n\nPlease check the formatting and try again.`);
-        emailInput.style.borderColor = 'red';
-        emailInput.focus();
+        showCustomPopup(
+            `The email "${emailValue}" you inputted is not an acceptable email address. 
+            \nPlease check the formatting for the email and try again.`, 
+            () => {
+                emailInput.style.borderColor = 'red';
+                emailInput.focus();
+            }
+        );
         return; 
     }
 
@@ -237,7 +263,9 @@ document.getElementById('emailForm').addEventListener('submit', function(event) 
             // Check old flat property fallback or new array format
             const hasDuplicateImage = (existingEntry.images && existingEntry.images.includes(currentImageDataUrl)) || (existingEntry.imageDataUrl === currentImageDataUrl);  
             if (hasDuplicateImage) {
-                alert(`The image you are trying to add has already been saved to the account: ${emailValue}. Duplicates are not allowed.`);
+                // Custom popup instead of alert
+                showCustomPopup(`The image you are trying to add has already been saved to the account: ${emailValue}. 
+                    \nDuplicate images for emails are not allowed, please enter a different email and try again.`);
                 return; // Stop execution: does not render to DOM, does not save
             }
         }
@@ -248,12 +276,7 @@ document.getElementById('emailForm').addEventListener('submit', function(event) 
 
     // Save permanently to localStorage
     saveEntryToStorage(emailValue, currentImageDataUrl);
-
-    // Clean up interface for next entry - removed
-    // emailInput.value = '';
-    // loadRandomImage();
 });
-
 
 // LIGHTBOX OVERLAY
 const lightbox = document.getElementById('image-lightbox');

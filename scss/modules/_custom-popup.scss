@@ -1,0 +1,56 @@
+// ==========================================================================
+// Custom Pop Up Menu
+// ==========================================================================
+
+// Modal Overlay Container
+.custom-popup-overlay {
+	display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+    background-color: $colour-dimmed-bg;
+    align-items: center;
+    justify-content: center;
+    
+    // Smooth fade visibility configurations
+    opacity: 0;
+    pointer-events: none;
+    transition: $trans-form;
+
+    // Trigger state class handled by JS
+    &.is-active {
+        opacity: 1;
+        pointer-events: auto;
+
+        .confirm-content {
+            transform: translateY(0);
+            scale: 1;
+        }
+    }
+}
+
+// Modal Box Content
+.custom-popup-box {
+	background-color: $white;
+	padding: $gap-standard;
+	border-radius: $border-rad-curved;
+	max-width: em(400px);
+	width: 90%;
+	box-shadow: 0 4px 15px $colour-shadow;
+	text-align: center;
+	transform: translateY(-20px);
+	transition: $trans-form;
+
+	.custom-popup-overlay.is-active & {
+		transform: translateY(0);
+	}
+
+	.popup-message {
+		color: $colour-font-dark;
+		margin-bottom: $gap-standard;
+		white-space: pre-line; // Preserves line breaks (\n) from JS
+	}
+}

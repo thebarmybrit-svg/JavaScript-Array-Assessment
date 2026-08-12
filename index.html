@@ -96,9 +96,15 @@
                 <p class="h4">Are you sure?</p>
                 <p>This will permanently delete the image from your storage history.</p>
                 <div class="confirm-actions">
-                    <button id="cancel-delete-btn" class="btn btn-secondary">Cancel</button>
+                    <button id="cancel-delete-btn" class="btn btn-close">Cancel</button>
                     <button id="confirm-delete-btn" class="btn btn-danger">Delete</button>
                 </div>
+            </div>
+        </div>
+        <div id="customPopup" class="custom-popup-overlay">
+            <div class="custom-popup-box">
+                <p id="customPopupMessage" class="popup-message"></p>
+                <button id="customPopupClose" class="btn btn-close">OK</button>
             </div>
         </div>
         <script src="js/main.js"></script>
