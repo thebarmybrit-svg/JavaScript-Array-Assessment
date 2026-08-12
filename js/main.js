@@ -212,31 +212,75 @@ function showCustomPopup(message, onCloseCallback) {
     const popup = document.getElementById('customPopup');
     const popupMessage = document.getElementById('customPopupMessage');
     const closeBtn = document.getElementById('customPopupClose');
+    // Assuming 'customPopupBox' is the actual visible content box inside the backdrop wrapper
+    const popupBox = document.querySelector('.custom-popup-box') || popup.firstElementChild;
 
     // Set text and reveal modal
     popupMessage.textContent = message;
     popup.classList.add('is-active');
     closeBtn.focus();
 
-    // Clean up previous event listeners to avoid memory leaks
-    const handleClose = () => {
+    // Unified cleanup function to close and remove all listeners
+    const closePopup = () => {
         popup.classList.remove('is-active');
-        closeBtn.removeEventListener('click', handleClose);
+        
+        // Remove all listeners to prevent memory leaks
+        closeBtn.removeEventListener('click', closePopup);
+        popup.removeEventListener('click', handleOutsideClick);
+        document.removeEventListener('keydown', handleEscapeKey);
+        
         if (onCloseCallback) onCloseCallback();
     };
 
-    closeBtn.addEventListener('click', handleClose);
+    // Close when clicking outside the inner message box
+    const handleOutsideClick = (event) => {
+        if (!popupBox.contains(event.target)) {
+            closePopup();
+        }
+    };
+
+    // Close when pressing the Escape key
+    const handleEscapeKey = (event) => {
+        if (event.key === 'Escape') {
+            closePopup();
+        }
+    };
+
+    // Attach the new event listeners
+    closeBtn.addEventListener('click', closePopup);
+    popup.addEventListener('click', handleOutsideClick);
+    document.addEventListener('keydown', handleEscapeKey);
 }
 
 // EMAIL FORM SUBMISSION
+const emailInput = document.getElementById('user-email');
+
+// Clear the red border automatically when the user starts typing
+emailInput.addEventListener('input', function() {
+    if (this.style.borderColor === 'red') {
+        this.style.borderColor = '';
+    }
+});
+
 document.getElementById('emailForm').addEventListener('submit', function(event) {
     event.preventDefault();
 
-    const emailInput = document.getElementById('user-email');
     const emailValue = emailInput.value.trim();
     // Email Validation pattern
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     
+     // Validate the email input
+    if (emailValue === '') {
+        showCustomPopup(
+            `The email field cannot be blank. \nPlease enter an email address and try again.`, 
+            () => {
+                emailInput.style.borderColor = 'red';
+                emailInput.focus();
+            }
+        );
+        return; 
+    }
+
     // Validate the email format
     if (!emailPattern.test(emailValue)) {
         showCustomPopup(

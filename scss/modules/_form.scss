@@ -28,7 +28,7 @@
         }
 
         &:focus {
-            border-color: $grey;
+            border-color: $grey !important;
             box-shadow: $box-shadow-input; // Clear active item halo
         }
     }
